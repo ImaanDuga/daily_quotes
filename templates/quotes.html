@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}All Quotes{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1>All Quotes</h1>
+    {% if quotes %}
+    <table class="quotes-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Quote</th>
+                <th>Author</th>
+                <th>Added</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in quotes %}
+            <tr>
+                <td>{{ q.id }}</td>
+                <td>{{ q.text }}</td>
+                <td>{{ q.author }}</td>
+                <td>{{ q.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete_quote', quote_id=q.id) }}"
+                        onsubmit="return confirm('Delete this quote?')">
+                        <button type="submit" class="btn-delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No quotes yet. <a href="{{ url_for('add_quote') }}">Add one!</a></p>
+    {% endif %}
+</div>
+{% endblock %}
