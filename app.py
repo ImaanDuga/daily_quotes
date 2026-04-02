@@ -60,6 +60,22 @@ def add_quote():
             return redirect(url_for("list_quotes"))
     return render_template("add_quote.html")
 
+@app.route("/quotes/edit/<int:quote_id>", methods=["GET", "POST"])
+def edit_quote(quote_id):
+    quote = Quote.query.get_or_404(quote_id)
+    if request.method == "POST":
+        text = request.form.get("text", "").strip()
+        author = request.form.get("author", "").strip()
+        if not text or not author:
+            flash("Both fields are required.", "error")
+        else:
+            quote.text = text
+            quote.author = author
+            db.session.commit()
+            flash("Quote updated.", "success")
+            return redirect(url_for("list_quotes"))
+    return render_template("edit_quote.html", quote=quote)
+
 @app.route("/quotes/delete/<int:quote_id>", methods=["POST"])
 def delete_quote(quote_id):
     quote = Quote.query.get_or_404(quote_id)

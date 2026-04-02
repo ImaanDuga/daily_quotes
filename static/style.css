@@ -260,3 +260,18 @@ body {
         transform: translateY(0);
     }
 }
+
+.btn-edit {
+    padding: 0.4rem 0.9rem;
+    background: #68d391;
+    color: white;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-right: 0.4rem;
+    display: inline-block;
+}
+
+.btn-edit:hover {
+    background: #48bb78;
+}

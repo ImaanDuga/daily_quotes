@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit Quote{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1>Edit Quote</h1>
+    <form method="POST" class="quote-form">
+        <label for="text">Quote</label>
+        <textarea id="text" name="text" rows="4" required>{{ quote.text }}</textarea>
+
+        <label for="author">Author</label>
+        <input id="author" name="author" type="text" required value="{{ quote.author }}">
+
+        <button type="submit" class="btn-submit">Update Quote</button>
+        <a href="{{ url_for('list_quotes') }}" style="margin-top:0.5rem; color:#667eea;">Cancel</a>
+    </form>
+</div>
+{% endblock %}
