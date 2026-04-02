@@ -86,8 +86,7 @@ def delete_quote(quote_id):
 
 @app.route("/health")
 def health():
-    # Deliberate bug: referencing undefined variable to trigger error in logs
-    return {"status": "ok", "db_count": Quote.querry.count()}
+    return {"status": "ok", "db_count": Quote.query.count()}
 
 # Seed data
 DEFAULT_QUOTES = [
